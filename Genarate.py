@@ -1,6 +1,6 @@
 from sklearn.datasets import make_classification
-
-
+#Klasa odpowiedzialna za generowanie danych
+# x- proporcje klas
 class Generate():
     def generate(x):
         n_samples = 12345

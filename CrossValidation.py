@@ -9,10 +9,11 @@ from sklearn.naive_bayes import GaussianNB
 import Draw
 DDraw = Draw.Draw
 
-
+#Klasa odpowiedzialna za walidację krzyżową, obliczenie Balanced Accuracy Score, oraz wykonaanie testu T-studenta
 class CrossValidation():
     #RepeatedStratifiedKFold walidacja krzyżowa dla danych niezbalansowanych
     def RCV(X, y, over_sampler):
+        #walidacja krzyżowa 5x2
         n_splits = 2
         n_repeats = 5
         random_state = 1337
@@ -35,8 +36,9 @@ class CrossValidation():
             sample_2 = X_resampled_over_sampler[y_resampled_over_sampler == 1]
             over_sampler_t_test.append(stats.ttest_ind(sample_1, sample_2, equal_var=False))
 
-
+        #średnia z Balanced Accuracy
         over_sampler_mean_score = np.mean(over_sampler_scores)
+        # odchylenie standartdowe z Balanced Accuracy
         over_sampler_std_score = np.std(over_sampler_scores)
 
         print(over_sampler)
@@ -51,10 +53,10 @@ class CrossValidation():
         # Proporcje po oversamplingu SMOTE
         dataset = pd.DataFrame(y_resampled_over_sampler)
         target_count = dataset.value_counts()
-
         print('Class 0:', target_count[0])
         print('Class 1:', target_count[1])
         print('Proportion:', round(target_count[0] / target_count[1], 2), ': 1')
         target_count.plot(kind='bar', title='After over-sampler')
+        # wyświetlanie w przestrzeni 2D rozkładu klas po oversamplingu
         plt.show()
         DDraw.plot_2d_space(X_resampled_over_sampler, y_resampled_over_sampler, 'After over-sampler')
