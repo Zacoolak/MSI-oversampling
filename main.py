@@ -1,3 +1,4 @@
+#Jan Cichy Piotr Kaczkowski
 import pandas as pd
 import matplotlib.pyplot as plt
 from imblearn.over_sampling import SMOTE
