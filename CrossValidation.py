@@ -32,9 +32,7 @@ class CrossValidation():
             predict = model.predict(X_test)
             over_sampler_scores.append(balanced_accuracy_score(y_test, predict))
             #T test
-            sample_1 = X_resampled_over_sampler[y_resampled_over_sampler == 0]
-            sample_2 = X_resampled_over_sampler[y_resampled_over_sampler == 1]
-            over_sampler_t_test.append(stats.ttest_ind(sample_1, sample_2, equal_var=False))
+            over_sampler_t_test.append(stats.ttest_ind(X_resampled_over_sampler, y_resampled_over_sampler, equal_var=False))
 
         #średnia z Balanced Accuracy
         over_sampler_mean_score = np.mean(over_sampler_scores)
