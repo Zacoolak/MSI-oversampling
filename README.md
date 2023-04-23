@@ -1,4 +1,9 @@
 # MSI-oversampling
+Plik Genarate.py zawiara funkcje generującą syntetyczne dane z możliwością określenia proporcjij między klasami.
+Plik Draw.py zawiara funkcję pozwalającą wyświatlić dane na płaszczyźnie 2D.
+Plik CrossValiadtion implementuje walidację krzyzową 5x2, Balanced accuracy, oraz test T-studenta. Jako parametr funkcja przyjmuje dane oraz wybry oversampler
+Plik main.py łączy ze sobą wyżej wymienione pliki wykorzystując ich funkcje.
+
 Pierwsze testy zostały wykonanie na zbiorze danych liczącym 12345 próbek z imbalance ratio równym 0.999, liczności klas prezentują się w następujacy sposób (Class 0: 12333 Class 1: 12). Następnie z wykorzystaniem walidacji krzyżowej 5x2 każdyz  resamplerów został "wyszkolony"
 Wyniki prezentują się w następujący sposób:
 Przed oversamplingiem
@@ -6,6 +11,7 @@ Przed oversamplingiem
 ![image](https://user-images.githubusercontent.com/118558953/233835555-5719f63c-9517-49e2-8bb9-71c2eff00f8b.png)
 ![image](https://user-images.githubusercontent.com/118558953/233835567-a2790740-602e-41da-ba34-b5b9843943d0.png)
 
+Dla kazdego z reasmplerów sampling_strategy został ustawiony na 0.5
 Dla SMOTE
 ![image](https://user-images.githubusercontent.com/118558953/233835932-e1cb66e7-aac3-4620-83a6-fa8a99b0a2ad.png)
 ![image](https://user-images.githubusercontent.com/118558953/233835941-0a1501dd-2690-4dfb-8cd9-b045380450b3.png)
@@ -21,4 +27,4 @@ Dla SVMSMOTE
 ![image](https://user-images.githubusercontent.com/118558953/233836067-e7bdbf89-ab0f-4367-be65-3cd58fa49a73.png)
 ![image](https://user-images.githubusercontent.com/118558953/233836078-2376e120-b0a3-4894-a78c-28dbb889c136.png)
 
-Dla kazdego z reasmplerów sampling_strategy został ustawiony na 0.5
+
