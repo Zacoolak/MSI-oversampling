@@ -2,6 +2,7 @@
 Pierwsze testy zostały wykonanie na zbiorze danych liczącym 12345 próbek z imbalance ratio równym 0.999, liczności klas prezentują się w następujacy sposób (Class 0: 12333 Class 1: 12). Następnie z wykorzystaniem walidacji krzyżowej 5x2 każdyz  resamplerów został "wyszkolony"
 Wyniki prezentują się w następujący sposób:
 Przed oversamplingiem
+
 ![image](https://user-images.githubusercontent.com/118558953/233835525-ac690cac-55d2-4fe8-8b43-875d1f1d0a56.png)
 ![image](https://user-images.githubusercontent.com/118558953/233835555-5719f63c-9517-49e2-8bb9-71c2eff00f8b.png)
 ![image](https://user-images.githubusercontent.com/118558953/233835567-a2790740-602e-41da-ba34-b5b9843943d0.png)
