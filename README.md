@@ -1,10 +1,11 @@
 # MSI-oversampling
 Plik Genarate.py zawiara funkcje generującą syntetyczne dane z możliwością określenia proporcjij między klasami.
 Plik Draw.py zawiara funkcję pozwalającą wyświatlić dane na płaszczyźnie 2D.
-Plik CrossValiadtion implementuje walidację krzyzową 5x2, Balanced accuracy, oraz test T-studenta. Jako parametr funkcja przyjmuje dane oraz wybry oversampler
+Plik CrossValiadtion.py implementuje walidację krzyzową 5x2, Balanced accuracy, oraz test T-studenta. Jako parametr funkcja przyjmuje dane oraz wybry oversampler.
+Plik MakeImbalance.py odpowiada za sztuczne zwiększenie liczebności wybranej klasy, poprzez dublowanie próbek danej klasy.
 Plik main.py łączy ze sobą wyżej wymienione pliki wykorzystując ich funkcje.
 
-Pierwsze testy zostały wykonanie na zbiorze danych liczącym 12345 próbek z imbalance ratio równym 0.999, liczności klas prezentują się w następujacy sposób (Class 0: 12333 Class 1: 12). Następnie z wykorzystaniem walidacji krzyżowej 5x2 każdyz  resamplerów został "wyszkolony"
+Pierwsze testy zostały wykonanie na zbiorze danych liczącym 12345 próbek z imbalance ratio równym 0.999, liczności klas prezentują się w następujacy sposób (Class 0: 12333 Class 1: 12). Następnie z wykorzystaniem walidacji krzyżowej 5x2 każdy z resamplerów został "wyszkolony".
 Wyniki prezentują się w następujący sposób:
 Przed oversamplingiem
 ![image](https://user-images.githubusercontent.com/118558953/233835525-ac690cac-55d2-4fe8-8b43-875d1f1d0a56.png)
