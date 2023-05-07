@@ -1,4 +1,5 @@
 #Jan Cichy Piotr Kaczkowski
+import numpy as np
 from sklearn.datasets import make_classification
 #Klasa odpowiedzialna za generowanie danych
 # x- proporcje klas

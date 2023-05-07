@@ -8,13 +8,18 @@ from scipy import stats
 from sklearn.naive_bayes import GaussianNB
 
 import Draw
+import MakeImbalance
 DDraw = Draw.Draw
+MakeImb = MakeImbalance.MakeImbalance
 
-#Klasa odpowiedzialna za walidację krzyżową, obliczenie Balanced Accuracy Score, oraz wykonaanie testu T-studenta
+# Klasa odpowiedzialna za walidację krzyżową, obliczenie Balanced Accuracy Score, oraz wykonaanie testu T-studenta
 class CrossValidation():
-    #RepeatedStratifiedKFold walidacja krzyżowa dla danych niezbalansowanych
+    # RepeatedStratifiedKFold walidacja krzyżowa dla danych niezbalansowanych
     def RCV(X, y, over_sampler):
-        #walidacja krzyżowa 5x2
+        # Zwiększenie liczebności klasy 0 lub 1 (parametr group)
+        X, y = MakeImb.make_imbalance(X, y, 1, over_sampler)
+
+        # Walidacja krzyżowa 5x2
         n_splits = 2
         n_repeats = 5
         random_state = 1337
@@ -26,7 +31,7 @@ class CrossValidation():
         for train_index, test_index in rkf.split(X, y):
             X_train, X_test = X[train_index], X[test_index]
             y_train, y_test = y[train_index], y[test_index]
-            #SMOTE Oversampling
+            # SMOTE Oversampling
             X_resampled_over_sampler, y_resampled_over_sampler = over_sampler.fit_resample(X_train, y_train)
             model.fit(X_resampled_over_sampler, y_resampled_over_sampler)
             # Balanced Accuracy Score
@@ -35,9 +40,9 @@ class CrossValidation():
             #T test
             over_sampler_t_test.append(stats.ttest_ind(X_resampled_over_sampler, y_resampled_over_sampler, equal_var=False))
 
-        #średnia z Balanced Accuracy
+        # Średnia z Balanced Accuracy
         over_sampler_mean_score = np.mean(over_sampler_scores)
-        # odchylenie standartdowe z Balanced Accuracy
+        # Odchylenie standartdowe z Balanced Accuracy
         over_sampler_std_score = np.std(over_sampler_scores)
 
         print(over_sampler)

@@ -35,9 +35,7 @@ plt.show()
 DDraw.plot_2d_space(X, y, 'Starting point')
 #Definiowanie oversamplerów
 smote = SMOTE(sampling_strategy=ratio)
-
 ROS = RandomOverSampler(sampling_strategy=ratio)
-
 SVMSMOTE = SVMSMOTE(sampling_strategy=ratio)
 
 CV.RCV(X, y, smote)
