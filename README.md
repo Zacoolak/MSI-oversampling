@@ -2,7 +2,9 @@
 Plik Genarate.py zawiara funkcje generującą syntetyczne dane z możliwością określenia proporcjij między klasami.
 Plik Draw.py zawiara funkcję pozwalającą wyświatlić dane na płaszczyźnie 2D.
 Plik CrossValiadtion.py implementuje walidację krzyzową 5x2, Balanced accuracy, oraz test T-studenta. Jako parametr funkcja przyjmuje dane oraz wybry oversampler.
+Plik ImbResampler.py jest resamplerem bazującym na klsyfikatorze GaussianNB() i resamplerze SMOTE().
 Plik MakeImbalance.py odpowiada za sztuczne zwiększenie liczebności wybranej klasy, poprzez dublowanie próbek danej klasy.
+Plik RatioBeautifier.py do proporcji klas w ImbResampler.
 Plik main.py łączy ze sobą wyżej wymienione pliki wykorzystując ich funkcje.
 
 Pierwsze testy zostały wykonanie na zbiorze danych liczącym 12345 próbek z imbalance ratio równym 0.999, liczności klas prezentują się w następujacy sposób (Class 0: 12333 Class 1: 12). Następnie z wykorzystaniem walidacji krzyżowej 5x2 każdy z resamplerów został "wyszkolony".
