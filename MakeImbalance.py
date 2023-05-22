@@ -1,7 +1,8 @@
 #Jan Cichy Piotr Kaczkowski
 import numpy as np
-
 import Draw
+import RatioBeautifier as rb
+
 DDraw = Draw.Draw
 # Klasa odpowiada za sztuczne zwiększenie liczebności klas
 class MakeImbalance():
@@ -12,7 +13,7 @@ class MakeImbalance():
         X_class = X[class_idx]
         y_class = y[class_idx]
         num_doubling = 100
-
+        # ratio*num_dublings = ratio po usunięciu
         for i in range(num_doubling-1):
             X_doubled = X_class.copy()
             y_doubled = y_class.copy()
@@ -28,5 +29,3 @@ class MakeImbalance():
 
         return X, y
         # Zwraca X i y po resamplingu, z usunietymi sztucznie wygenerowanymi próbkami
-
-

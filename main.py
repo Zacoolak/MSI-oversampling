@@ -4,12 +4,14 @@ import matplotlib.pyplot as plt
 from imblearn.over_sampling import SMOTE
 from imblearn.over_sampling import RandomOverSampler
 from imblearn.over_sampling import SVMSMOTE
-
+from sklearn.naive_bayes import GaussianNB
 
 import Draw
 import Genarate
 import CrossValidation
-
+import MakeImbalance as MI
+import RatioBeautifier as rb
+import ImbResampler as ImR
 
 #Definiowanie potrzebnych funkcji
 DDraw = Draw.Draw
@@ -17,7 +19,7 @@ DData = Genarate.Generate
 CV = CrossValidation.CrossValidation
 
 #zmienne
-ratio = 0.5 # do resamplera
+ratio = 3 # do resamplera
 class_proportion = 0.999 # do make clasification
 
 #generowanie zbioru danych
@@ -35,10 +37,24 @@ plt.show()
 DDraw.plot_2d_space(X, y, 'Starting point')
 #Definiowanie oversamplerów
 smote = SMOTE(sampling_strategy=ratio)
+
+Imb = ImR.ImbResampler(clf=GaussianNB(), resampler=SMOTE(), ratio=ratio);
+"""
+X_res, y_res = Imb.fit(X, y)
+
+dataset = pd.DataFrame(y_res)
+target_count = dataset.value_counts()
+print('Class 0:', target_count[0])
+print('Class 1:', target_count[1])
+print('Proportion:', round(target_count[0] / target_count[1], 2), ': 1')
+target_count.plot(kind='bar', title='After over-sampler')
+"""
+CV.RCV(X, y, Imb)
+"""
 ROS = RandomOverSampler(sampling_strategy=ratio)
 SVMSMOTE = SVMSMOTE(sampling_strategy=ratio)
 
 CV.RCV(X, y, smote)
 CV.RCV(X, y, ROS)
 CV.RCV(X, y, SVMSMOTE)
-
+"""
