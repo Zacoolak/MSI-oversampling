@@ -16,6 +16,7 @@ class ImbResampler():
 
     def fit(self, X, y):
         # ustalenie która klasa jest większościowa
+        #print(np.unique(y, return_counts=True))
         class_0, class_1 = rb.make_beautiful(X, y)
         if (class_0 < class_1):
             starting_ratio = (class_0 / class_1)
@@ -37,6 +38,7 @@ class ImbResampler():
             base_resampler2 = SMOTE(sampling_strategy=ratio_help)
 
             X_res, y_res = imb.make_imbalance(X, y, group, base_resampler2)
+            #print("a", np.unique(y_res, return_counts=True))
 
         elif (self.ratio < 1):
             # zmniejszenie niezbalansowania
@@ -44,6 +46,7 @@ class ImbResampler():
             self.resampler.__init__(sampling_strategy=self.ratio)
             # resampling
             X_res, y_res = self.resampler.fit_resample(X, y)
+            #print("a", np.unique(y_res, return_counts=True))
 
         self.clf.fit(X_res, y_res)
         return X_res, y_res

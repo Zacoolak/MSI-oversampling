@@ -2,6 +2,7 @@
 import numpy as np
 import Draw
 import RatioBeautifier as rb
+#from ImbResampler import ImbResampler
 
 DDraw = Draw.Draw
 # Klasa odpowiada za sztuczne zwiększenie liczebności klas
