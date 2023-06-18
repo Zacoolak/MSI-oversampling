@@ -1,5 +1,4 @@
 # Jan Cichy Piotr Kaczkowski
-import numpy as np
 from imblearn.over_sampling import SMOTE, RandomOverSampler, SVMSMOTE
 
 import RatioBeautifier as rb
@@ -35,12 +34,12 @@ class ImbResampler():
             # ustalenie resamplera oraz parametru ratio
             base_resampler = self.resampler.__init__(sampling_strategy=ratio_help)
             # z base_resampler imb.make_imbalance nie działa: TypeError: super(type, obj): obj must be an instance or subtype of type
-            base_resampler2 = SMOTE(sampling_strategy=ratio_help)
+            base_resampler2 = RandomOverSampler(sampling_strategy=ratio_help)
 
             X_res, y_res = imb.make_imbalance(X, y, group, base_resampler2)
             #print("a", np.unique(y_res, return_counts=True))
 
-        elif (self.ratio < 1):
+        elif (self.ratio <= 1):
             # zmniejszenie niezbalansowania
             # ustalenie resamplera oraz parametru ratio
             self.resampler.__init__(sampling_strategy=self.ratio)

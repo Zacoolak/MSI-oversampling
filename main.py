@@ -1,5 +1,4 @@
 #Jan Cichy Piotr Kaczkowski
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from imblearn.over_sampling import SMOTE
@@ -12,8 +11,6 @@ from sklearn.tree import DecisionTreeClassifier
 import Draw
 import Genarate
 import CrossValidation
-import MakeImbalance as MI
-import RatioBeautifier as rb
 import ImbResampler as ImR
 
 #Definiowanie potrzebnych funkcji
@@ -22,8 +19,8 @@ DData = Genarate.Generate
 CV = CrossValidation.CrossValidation
 
 #zmienne
-ratio = 0.5 # do resamplera
-class_proportion = 0.8 # do make clasification
+ratio = 2 # do resamplera
+class_proportion = 0.99 # do make clasification
 
 #generowanie zbioru danych
 X, y = DData.generate(class_proportion)
@@ -38,29 +35,6 @@ target_count.plot(kind='bar', title='Count (target)')
 #wyświetlanie w przestrzeni 2D rozkładu klas
 plt.show()
 DDraw.plot_2d_space(X, y, 'Starting point')
-#Definiowanie oversamplerów
-smote = SMOTE(sampling_strategy=ratio)
-#ROS = RandomOverSampler(sampling_strategy=ratio)
-#SVMSMOTE = SVMSMOTE(sampling_strategy=ratio)
-Imb = ImR.ImbResampler(clf=GaussianNB(), resampler=SMOTE(), ratio=ratio);
-CV.RCV(X, y, Imb)
-"""
-clfs = [
-    GaussianNB(),
-    KNeighborsClassifier(),
-    DecisionTreeClassifier()
-]
 
-for clf_id, clf in enumerate(clfs):
-    Imb = ImR.ImbResampler(clf=clf, resampler=SMOTE(), ratio=ratio);
-    scores = CV.RCV(X, y, Imb, clf_id, clf)
-    #np.append(scores,scores)
-    CV.tests(scores)
-"""
-"""
-Imb = ImR.ImbResampler(clf=GaussianNB(), resampler=SMOTE(), ratio=ratio);
+Imb = ImR.ImbResampler(clf=GaussianNB(), resampler=RandomOverSampler(), ratio=ratio)
 CV.RCV(X, y, Imb)
-CV.RCV(X, y, smote)
-CV.RCV(X, y, ROS)
-CV.RCV(X, y, SVMSMOTE)
-"""
